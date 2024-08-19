@@ -23,9 +23,9 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: _pages.elementAt(_selectedIndex),
       bottomNavigationBar: BottomAppBar(
+        height: 92,
         color: Colors.white,
         child: SizedBox(
-          height: 56,
           width: MediaQuery.of(context).size.width,
           child: Padding(
             padding: const EdgeInsets.only(left: 25, right: 25),
@@ -105,7 +105,13 @@ class MainHomePage extends StatelessWidget {
           children: [
             const TopBar(),
             const SearchInput(),
-            const PromoCard()
+            const PromoCard(),
+            const HeadLine(),
+            SizedBox( height: he.height * .01,),
+            const CardListView(),
+            const SHeadLine(),
+            SizedBox( height: he.height * .01,),
+            const CardListView()
           ],
         ),
       ),
@@ -205,7 +211,6 @@ class SearchInput extends StatelessWidget {
               color: Colors.grey.withOpacity(.15)),
         ]),
         child: const TextField(
-          
           decoration: InputDecoration(
             prefix: Icon(Icons.search),
             filled: true,
@@ -232,47 +237,233 @@ class SearchInput extends StatelessWidget {
   }
 }
 
-class PromoCard extends StatelessWidget{
+class PromoCard extends StatelessWidget {
   const PromoCard({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(25.0),
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        height: 150,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
+            gradient: const LinearGradient(
+                colors: [Color.fromARGB(255, 52, 120, 78), Color(0xFF6F35A5)])),
+        child: Stack(
+          children: [
+            Opacity(
+              opacity: .5,
+              child: Image.network(
+                  "https://firebasestorage.googleapis.com/v0/b/flutterbricks-public.appspot.com/o/BACKGROUND%202.png?alt=media&token=0d003860-ba2f-4782-a5ee-5d5684cdc244",
+                  fit: BoxFit.cover),
+            ),
+            Image.network(
+                "https://firebasestorage.googleapis.com/v0/b/flutterbricks-public.appspot.com/o/Image.png?alt=media&token=8256c357-cf86-4f76-8c4d-4322d1ebc06c"),
+            const Align(
+              alignment: Alignment.topRight,
+              child: Padding(
+                padding: EdgeInsets.all(25.0),
+                child: Text(
+                  "Want some\nicecream?",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class HeadLine extends StatelessWidget {
+  const HeadLine({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return const Padding(
+      padding: EdgeInsets.only(left: 25.0, right: 25),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Nearest Restaurants",
+                style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.normal,
+                    color: Colors.black),
+              ),
+              Text(
+                "The best food close to you",
+                style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.normal,
+                    color: Colors.grey),
+              )
+            ],
+          ),
+          Text(
+            "View All",
+            style: TextStyle(
+              fontWeight: FontWeight.normal,
+              color: kPrimaryColor,
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class SHeadLine extends StatelessWidget {
+  const SHeadLine({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return const Padding(
+      padding: EdgeInsets.only(left: 25.0, right: 25),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Popular Menu",
+                style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.normal,
+                    color: Colors.black),
+              ),
+              Text(
+                "The best food close for you",
+                style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.normal,
+                    color: Colors.grey),
+              )
+            ],
+          ),
+          Text(
+            "View more",
+            style: TextStyle(
+              fontWeight: FontWeight.normal,
+              color: kPrimaryColor,
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class CardListView extends StatelessWidget {
+  const CardListView({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 25, right: 25),
+      child: SizedBox(
+        width: MediaQuery.of(context).size.width,
+        height: 175,
+        child: ListView(
+          scrollDirection: Axis.horizontal,
+          children: [
+            Card(
+                "Vegan",
+                "https://firebasestorage.googleapis.com/v0/b/flutterbricks-public.appspot.com/o/Resturant%20Image%20(1).png?alt=media&token=461162b1-686b-4b0e-a3ee-fae1cb8b5b33",
+                "8 min away"),
+            Card(
+                "Italian ",
+                "https://firebasestorage.googleapis.com/v0/b/flutterbricks-public.appspot.com/o/Restaurant%20Image.png?alt=media&token=43509b4c-269e-4279-8c88-36dc9ed27a66",
+                "12 min away"),
+            Card(
+                "South Indian",
+                "https://firebasestorage.googleapis.com/v0/b/flutterbricks-public.appspot.com/o/Resturant%20Image%20(1).png?alt=media&token=461162b1-686b-4b0e-a3ee-fae1cb8b5b33",
+                "15 min away"),
+            Card(
+                "Punjabi",
+                "https://firebasestorage.googleapis.com/v0/b/flutterbricks-public.appspot.com/o/Resturant%20Image%20(1).png?alt=media&token=461162b1-686b-4b0e-a3ee-fae1cb8b5b33",
+                "15 min away"),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class Card extends StatelessWidget {
+  final String text;
+  final String imageUrl;
+  final String subtitle;
+
+  Card(this.text, this.imageUrl, this.subtitle, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-   return Padding(
-     padding: const EdgeInsets.all(25.0),
-     child: Container(
-       width: MediaQuery.of(context).size.width,
-       height: 150,
-       decoration: BoxDecoration(
-           borderRadius: BorderRadius.circular(15),
-           gradient: const LinearGradient(
-               colors: [Color.fromARGB(255, 52, 120, 78), Color(0xFF6F35A5)])),
-       child: Stack(
-         children: [
-           Opacity(
-             opacity: .5,
-             child: Image.network(
-                 "https://firebasestorage.googleapis.com/v0/b/flutterbricks-public.appspot.com/o/BACKGROUND%202.png?alt=media&token=0d003860-ba2f-4782-a5ee-5d5684cdc244",
-                 fit: BoxFit.cover),
-           ),
-           Image.network(
-               "https://firebasestorage.googleapis.com/v0/b/flutterbricks-public.appspot.com/o/Image.png?alt=media&token=8256c357-cf86-4f76-8c4d-4322d1ebc06c"),
-           const Align(
-             alignment: Alignment.topRight,
-             child: Padding(
-               padding: EdgeInsets.all(25.0),
-               child: Text(
-                 "Want some\nicecream?",
-                 style: TextStyle(
-                     color: Colors.white,
-                     fontSize: 22,
-                     fontWeight: FontWeight.bold),
-               ),
-             ),
-           ),
-         ],
-       ),
-     ),
-   );
+    return Padding(
+      padding: const EdgeInsets.only(left: 25.0, bottom: 15),
+      child: Container(
+        width: 150,
+        height: 150,
+        padding: const EdgeInsets.all(15.0),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12.5),
+          boxShadow: [
+            BoxShadow(
+                offset: const Offset(10, 20),
+                blurRadius: 10,
+                spreadRadius: 0,
+                color: Colors.grey.withOpacity(.05)),
+          ],
+        ),
+        child: Column(
+          children: [
+            Image.network(imageUrl, height: 70, fit: BoxFit.cover, frameBuilder:
+                (BuildContext context, Widget child, int? frame,
+                bool? wasSynchronouslyLoaded) {
+              if (wasSynchronouslyLoaded!) {
+                return child;
+              }
+              return AnimatedOpacity(
+                child: child,
+                opacity: frame == null ? 0 : 1,
+                duration: const Duration(seconds: 1),
+                curve: Curves.easeOut,
+              );
+            }),
+            const Spacer(),
+            Text(text,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                )),
+            const SizedBox(
+              height: 5,
+            ),
+            Text(
+              subtitle,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                  color: Colors.grey,
+                  fontWeight: FontWeight.normal,
+                  fontSize: 12),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+          ],
+        ),
+      ),
+    );
   }
-
 }
+
