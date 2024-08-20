@@ -55,7 +55,7 @@ class Profile extends StatelessWidget {
         ),
         body: SingleChildScrollView(
           child: Container(
-            padding:  const EdgeInsets.symmetric(horizontal: 25,vertical: 25),
+            padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 25),
             child: Column(
               children: [
                 SizedBox(
@@ -121,6 +121,46 @@ class Profile extends StatelessWidget {
                 const SizedBox(
                   height: 25,
                 ),
+                ProfileMenuWidget(
+                  text: 'Settings',
+                  icon: LineAwesomeIcons.cog_solid,
+                  press: () {},
+                ),
+                ProfileMenuWidget(
+                  text: 'Billing Details',
+                  icon: LineAwesomeIcons.wallet_solid,
+                  press: () {},
+                ),
+                ProfileMenuWidget(
+                  text: 'User Management',
+                  icon: LineAwesomeIcons.user_check_solid,
+                  press: () {},
+                ),
+                Divider(
+                  color: Colors.grey.shade400,
+                  thickness: 0.5,
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                ProfileMenuWidget(
+                  text: 'Help & Support',
+                  icon: LineAwesomeIcons.question_circle,
+                  press: () {},
+                ),
+                ProfileMenuWidget(
+                  text: 'Privacy Policy',
+                  icon: LineAwesomeIcons.lock_solid,
+                  press: () {},
+                ),
+                ProfileMenuWidget(
+                  text: 'Log Out',
+                  icon: LineAwesomeIcons.sign_out_alt_solid,
+                  press: () {
+                  },
+                  endIcon: false,
+                  color: Colors.red,
+                ),
               ],
             ),
           ),
@@ -130,4 +170,61 @@ class Profile extends StatelessWidget {
   }
 }
 
+class ProfileMenuWidget extends StatelessWidget {
+  const ProfileMenuWidget(
+      {Key? key,
+      required this.text,
+      required this.icon,
+      required this.press,
+      this.endIcon = true,
+      this.color})
+      : super(key: key);
 
+  final String text;
+  final IconData icon;
+  final VoidCallback press;
+  final bool endIcon;
+  final Color? color;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+        onTap: press,
+        leading: Container(
+          width: 40,
+          height: 40,
+          padding: const EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            color: Colors.grey[100],
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Icon(
+            icon,
+            color: color ?? Colors.grey.shade800,
+            size: 22,
+          ),
+        ),
+        title: Text(
+          text,
+          style: Theme.of(context)
+              .textTheme
+              .bodyMedium
+              ?.copyWith(color: color, fontSize: 18),
+        ),
+        trailing: endIcon
+            ? Container(
+                width: 30,
+                height: 30,
+                decoration: BoxDecoration(
+                  color: Colors.grey.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(100),
+                ),
+                child: const Icon(
+                  LineAwesomeIcons.angle_right_solid,
+                  color: Colors.black,
+                  size: 16,
+                ),
+              )
+            : null);
+  }
+}
