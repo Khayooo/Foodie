@@ -38,6 +38,9 @@ dependencies:
 
   #Flutter svg
   flutter_svg: ^2.0.10+1
+  #line awesome flutter
+  line_awesome_flutter: ^3.0.1
+
 
 
 dev_dependencies:

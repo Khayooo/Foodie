@@ -1,4 +1,6 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 class Profile extends StatelessWidget {
   const Profile({super.key});
@@ -19,6 +21,36 @@ class Profile extends StatelessWidget {
             const Color(0xFF6F35A5).withOpacity(.1),
             const Color(0xFF6F35A5).withOpacity(.05),
             const Color(0xFF6F35A5).withOpacity(.025),
+          ],
+        ),
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          leading: IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.menu,
+              color: Colors.white,
+            ),
+            tooltip: "Menu",
+          ),
+          centerTitle: true,
+          title: Text(
+            'Profile',
+            style: Theme.of(context)
+                .textTheme
+                .headlineSmall
+                ?.copyWith(color: Colors.white),
+          ),
+          actions: [
+            IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  LineAwesomeIcons.moon,
+                  color: Colors.white,
+                ))
           ],
         ),
       ),
