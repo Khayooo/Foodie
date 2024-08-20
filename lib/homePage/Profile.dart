@@ -53,7 +53,81 @@ class Profile extends StatelessWidget {
                 ))
           ],
         ),
+        body: SingleChildScrollView(
+          child: Container(
+            padding:  const EdgeInsets.symmetric(horizontal: 25,vertical: 25),
+            child: Column(
+              children: [
+                SizedBox(
+                  width: 120,
+                  height: 120,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(60),
+                    child: Image.asset(
+                      'assets/profile.jpeg',
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                Text(
+                  'Shahwaiz Mughal',
+                  style: Theme.of(context)
+                      .textTheme
+                      .headlineSmall
+                      ?.copyWith(color: Colors.grey.shade800, fontSize: 24),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  'shahwaizmughal940@gmail.com',
+                  style: Theme.of(context)
+                      .textTheme
+                      .headlineSmall
+                      ?.copyWith(color: Colors.grey.shade800, fontSize: 24),
+                ),
+                const SizedBox(
+                  height: 25,
+                ),
+                SizedBox(
+                  width: 200,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF6F35A5),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                    onPressed: () {},
+                    child: Text(
+                      'Edit Profile',
+                      style: Theme.of(context)
+                          .textTheme
+                          .labelLarge
+                          ?.copyWith(color: Colors.white, fontSize: 16),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 25,
+                ),
+                Divider(
+                  color: Colors.grey.shade400,
+                  thickness: 1,
+                ),
+                const SizedBox(
+                  height: 25,
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
 }
+
+
