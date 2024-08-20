@@ -11,9 +11,7 @@ class Restaurant extends StatelessWidget {
   }
 }
 
-Widget restaurantAvailable(
-  BuildContext context,
-) {
+Widget restaurantAvailable(BuildContext context) {
   var he = MediaQuery.of(context).size;
   return Container(
     padding: const EdgeInsets.only(top: 50),
@@ -56,49 +54,109 @@ Widget restaurantAvailable(
                 ),
                 onPressed: () {},
               ),
-              Expanded(
-                  child: ListView.builder(itemBuilder: (context, index) {
-                    itemCount: restaurantList.length;
-                    itemBuilder: (context, index) {
-                    return itemBuilder(he, context, index);
-                    };
-                  }))
             ],
           ),
-        )
+        ),
+        Expanded(  
+          child: ListView.builder(
+            itemCount: restaurantList.length,
+            itemBuilder: (context, index) {
+              return itemBuilder(he, context, index);
+            },
+          ),
+        ),
       ],
     ),
   );
 }
 
-
-Widget itemBuilder(Size size, BuildContext context, int index){
+Widget itemBuilder(Size size, BuildContext context, int index) {
   return Padding(
     padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 18),
     child: GestureDetector(
-      onTap: (){},
+      onTap: () {},
       child: Material(
         elevation: 3,
         borderRadius: BorderRadius.circular(18),
         child: Container(
-          height: size.height/2.5,
-          width: size.width/1.1,
+          height: size.height / 2.5,
+          width: size.width / 1.1,
           child: Column(
             children: [
-            Container(
-              height: size.height / 4,
-              width: size.width / 1.1,
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(18),
-                  topRight: Radius.circular(18),
+              Container(
+                height: size.height / 4,
+                width: size.width / 1.1,
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(18),
+                    topRight: Radius.circular(18),
+                  ),
+                  image: DecorationImage(
+                      image: NetworkImage(restaurantList[index].imageUrl),
+                      fit: BoxFit.cover),
                 ),
-                image: DecorationImage(
-                    image: NetworkImage(restaurantList[index].imageUrl),
-                    fit: BoxFit.cover),
               ),
-            )
-            ],
+          Container(
+            height: size.height / 12,
+            width: size.width / 1.2,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  restaurantList[index].title,
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                Container(
+                  height: size.height / 25,
+                  width: size.width / 7,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.green,
+                  ),
+                  alignment: Alignment.center,
+                  child: Text(
+                    restaurantList[index].rating,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+              Container(
+                width: size.width / 1.2,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      restaurantList[index].locations,
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 13,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 8.0),
+                      child: Text(
+                        "${restaurantList[index].price} for one",
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              )
+          ],
           ),
         ),
       ),
