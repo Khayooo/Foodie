@@ -126,8 +126,8 @@ class MainHomePage extends StatelessWidget {
               ),
             ),
             Container(
-              padding: const EdgeInsets.only(top: 5, right: 25, bottom: 15),
-              height: 300,
+              padding: const EdgeInsets.only(top: 5, right: 0, bottom: 15),
+              height: he.width,
               width: he.width,
               child: GridView.builder(
                   itemCount: foodItemList.length,
@@ -469,7 +469,7 @@ class Card extends StatelessWidget {
         ),
         child: Column(
           children: [
-            Image.network(imageUrl, height: 70, fit: BoxFit.cover, frameBuilder:
+            Image.network(imageUrl, height: 55, fit: BoxFit.cover, frameBuilder:
                 (BuildContext context, Widget child, int? frame,
                 bool? wasSynchronouslyLoaded) {
               if (wasSynchronouslyLoaded!) {

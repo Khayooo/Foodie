@@ -64,7 +64,7 @@ class Profile extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(60),
                     child: Image.asset(
-                      'assets/profile.jpeg',
+                      'assets/profile_pic.jpg',
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -74,20 +74,19 @@ class Profile extends StatelessWidget {
                 ),
                 Text(
                   'Shahwaiz Mughal',
-                  style: Theme.of(context)
+                  style:
+                  Theme.of(context)
                       .textTheme
                       .headlineSmall
                       ?.copyWith(color: Colors.grey.shade800, fontSize: 24),
+
                 ),
                 const SizedBox(
                   height: 5,
                 ),
                 Text(
                   'shahwaizmughal940@gmail.com',
-                  style: Theme.of(context)
-                      .textTheme
-                      .headlineSmall
-                      ?.copyWith(color: Colors.grey.shade800, fontSize: 24),
+                  style: TextStyle(color: Colors.grey.shade800,fontSize: 13),
                 ),
                 const SizedBox(
                   height: 25,
