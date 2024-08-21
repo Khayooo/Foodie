@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/constants.dart';
 
-class RestaurantDetails extends StatelessWidget{
+class RestaurantDetails extends StatelessWidget {
   final int index;
   const RestaurantDetails({super.key, required this.index});
   @override
@@ -46,47 +46,44 @@ class RestaurantDetails extends StatelessWidget{
   }
 }
 
-
-class MainScreen extends StatelessWidget{
+class MainScreen extends StatelessWidget {
   final int index;
   const MainScreen({super.key, required this.index});
   @override
   Widget build(BuildContext context) {
     var he = MediaQuery.of(context).size;
-return Container(
-  padding: const EdgeInsets.only(top: 50),
-  height: he.height,
-  width: he.width,
-  decoration: BoxDecoration(
-    gradient: LinearGradient(
-      begin: Alignment.topCenter,
-      end: Alignment.bottomCenter,
-      colors: [
-        const Color.fromARGB(255, 83, 69, 164),
-        const Color.fromARGB(255, 66, 53, 165).withOpacity(.8),
-        const Color.fromARGB(255, 75, 53, 165).withOpacity(.6),
-        const Color.fromARGB(255, 121, 112, 159).withOpacity(.4),
-        const Color.fromARGB(255, 70, 53, 165).withOpacity(.2),
-        const Color(0xFF6F35A5).withOpacity(.1),
-        const Color(0xFF6F35A5).withOpacity(.05),
-        const Color(0xFF6F35A5).withOpacity(.025),
-      ],
-    ),
-  ),
-  child: SingleChildScrollView(
-    child: Column(
-      children: [
-TopImage(index: index),
-      ],
-    ),
-  ),
-);
+    return Container(
+      padding: const EdgeInsets.only(top: 50),
+      height: he.height,
+      width: he.width,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            const Color.fromARGB(255, 83, 69, 164),
+            const Color.fromARGB(255, 66, 53, 165).withOpacity(.8),
+            const Color.fromARGB(255, 75, 53, 165).withOpacity(.6),
+            const Color.fromARGB(255, 121, 112, 159).withOpacity(.4),
+            const Color.fromARGB(255, 70, 53, 165).withOpacity(.2),
+            const Color(0xFF6F35A5).withOpacity(.1),
+            const Color(0xFF6F35A5).withOpacity(.05),
+            const Color(0xFF6F35A5).withOpacity(.025),
+          ],
+        ),
+      ),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            TopImage(index: index),
+          ],
+        ),
+      ),
+    );
   }
-
 }
 
-
-class TopImage extends StatefulWidget{
+class TopImage extends StatefulWidget {
   final int index;
   const TopImage({super.key, required this.index});
 
@@ -99,19 +96,68 @@ class _TopImageState extends State<TopImage> {
   Widget build(BuildContext context) {
     var he = MediaQuery.of(context).size;
     return Container(
-        height: he.height * 0.3,
-        width: he.width,
-        decoration: BoxDecoration(
-
-        color: Colors.amber,
+      height: he.height * 0.3,
+      width: he.width,
+      decoration: BoxDecoration(
         borderRadius: const BorderRadius.only(
-        topLeft: Radius.circular(50),
-    bottomRight: Radius.circular(50),
-    ),
-    image: DecorationImage(
-    image: NetworkImage(restaurantList[widget.index].imageUrl),
-    fit: BoxFit.cover),
-    ),
+          topLeft: Radius.circular(50),
+          bottomRight: Radius.circular(50),
+        ),
+        image: DecorationImage(
+            image: NetworkImage(restaurantList[widget.index].imageUrl),
+            fit: BoxFit.cover),
+      ),
+      child: Stack(
+        children: [
+          Positioned(
+              top: 20,
+              left: 20,
+              child: IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: const Icon(
+                    Icons.arrow_back,
+                    size: 28,
+                    color: kPrimaryColor,
+                  ))),
+          Positioned(
+              top: 20,
+              right: 20,
+              child: IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.favorite,
+                    size: 28,
+                    color: kPrimaryColor,
+                  ))),
+          Positioned(
+            bottom: 20,
+            left: 20,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  restaurantList[widget.index].title,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                Text(
+                  restaurantList[widget.index].locations,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
