@@ -42,6 +42,7 @@ class RestaurantDetails extends StatelessWidget {
         ),
       ),
       body: MainScreen(index: index),
+      
     );
   }
 }
@@ -76,6 +77,8 @@ class MainScreen extends StatelessWidget {
         child: Column(
           children: [
             TopImage(index: index),
+            Rating(index: index),
+            FOodDescription(index: index)
           ],
         ),
       ),
@@ -161,3 +164,120 @@ class _TopImageState extends State<TopImage> {
     );
   }
 }
+
+class Rating extends StatelessWidget{
+  final int index;
+  const Rating({super.key, required this.index});
+  @override
+  Widget build(BuildContext context) {
+    var he = MediaQuery.of(context).size;
+   return Container(
+     padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
+     height: he.height * .1,
+     width: he.width,
+     child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+       Column(
+         mainAxisAlignment: MainAxisAlignment.center,
+         children: [
+           Text(
+             restaurantList[index].rating,
+             style: const TextStyle(
+               color: Colors.black,
+               fontSize: 20,
+               fontWeight: FontWeight.w500,
+             ),
+           ),
+           const Text(
+             "Rating",
+             style: TextStyle(
+               color: Colors.black,
+               fontSize: 15,
+               fontWeight: FontWeight.w500,
+             ),
+           ),
+         ],
+       ),
+       Column(
+         mainAxisAlignment: MainAxisAlignment.start,
+         children: [
+           const SizedBox(height: 15),
+           Text(
+             "${restaurantList[index].price} for one",
+             style: const TextStyle(
+               color: Colors.blueGrey,
+               fontSize: 16,
+               fontWeight: FontWeight.w500,
+             ),
+           ),
+           const Text(
+             "Delivery Time: 30 min",
+             style: TextStyle(
+               color: Colors.black,
+               fontSize: 15,
+               fontWeight: FontWeight.w500,
+             ),
+           ),
+         ],
+       ),
+     ]),
+   );
+  }
+
+}
+class FOodDescription extends StatefulWidget {
+  final int index;
+  const FOodDescription({super.key, required this.index});
+
+  @override
+  State<FOodDescription> createState() => _FOodDescriptionState();
+}
+
+class _FOodDescriptionState extends State<FOodDescription>
+    with SingleTickerProviderStateMixin {
+  bool _showFullText = false;
+
+  @override
+  Widget build(BuildContext context) {
+    var he = MediaQuery.of(context).size;
+    return Container(
+      padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
+      width: he.width,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          AnimatedSize(
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.easeInOut,
+            child: ConstrainedBox(
+              constraints: _showFullText
+                  ? const BoxConstraints()
+                  : const BoxConstraints(maxHeight: 50),
+              child: Text(
+                restaurantList[widget.index].description,
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                ),
+                softWrap: true,
+                overflow: TextOverflow.clip,
+              ),
+            ),
+          ),
+          _buildButton(),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildButton() {
+    return TextButton(
+        onPressed: () {
+          setState(() {
+            _showFullText = !_showFullText;
+          });
+        },
+        child: Text(_showFullText ? "Show less" : "Show more"));
+  }
+}
+
