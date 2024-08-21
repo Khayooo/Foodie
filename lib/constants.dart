@@ -242,53 +242,84 @@ List<Restaurants> restaurantList = [
 
 
 class Restaurants1 {
-  String  title, price;
+  String title, price, category;
 
-  Restaurants1(
-      {
-        required this.title,
-
-        required this.price});
+  Restaurants1({required this.title, required this.price, required this.category});
 }
 
 List<Restaurants1> restaurantList1 = [
   Restaurants1(
+    category:"Om Sweet & Snacks",
     title: "Jalebi",
-    price: "50",),
+    price: "50",
+  ),
   Restaurants1(
+    category:"Om Sweet & Snacks",
     title: "Rasgulla",
-    price: "100",),
+    price: "100",
+  ),
   Restaurants1(
+    category:"Om Sweet & Snacks",
     title: "Rasmalai",
-    price: "100",),
+    price: "100",
+  ),
   Restaurants1(
+    category:"Om Sweet & Snacks",
     title: "Gulab Jamun",
-    price: "70",),
+    price: "70",
+  ),
   Restaurants1(
+    category:"Om Sweet & Snacks",
     title: "Besan Ladoo",
-    price: "160",),
+    price: "160",
+  ),
   Restaurants1(
+    category:"Om Sweet & Snacks",
     title: "Kaju Katli",
-    price: "200",),
-  Restaurants1(
-    title: "Rava Ladoo",
-    price: "160",),
-  Restaurants1(
-    title: "Moong Dal Halwa",
-    price: "200",),
+    price: "200",
+  ),
+  Restaurants1(category:"Om Sweet & Snacks", title: "Rava Ladoo", price: "160",),
+  Restaurants1( category:"Om Sweet & Snacks", title: "Moong Dal Halwa", price: "200",),
+  Restaurants1( category:"Burger King", title: "Veg Burger", price: "150"),
+  Restaurants1(category:"Burger King",title: "Chicken Burger", price: "250"),
+  Restaurants1(category:"Burger King",title: "Paneer Burger", price: "250"),
+  Restaurants1(category:"Burger King",title: "Veg Burger", price: "350"),
+  Restaurants1(category:"Burger King",title: "Chicken Burger", price: "250"),
+  Restaurants1(category:"Burger King",title: "Paneer Burger", price: "250"),
+  Restaurants1(category: "The Masala Story", title: "Chicken Seekh Kebab", price: "300"),
+  Restaurants1(category: "The Masala Story", title: "Mutton Seekh Kebab", price: "350"),
+  Restaurants1(category: "The Masala Story", title: "Paneer Tikka Kebab", price: "280"),
+  Restaurants1(category: "The Masala Story", title: "Hariyali Chicken Kebab", price: "320"),
+  Restaurants1(category: "The Masala Story", title: "Malai Kebab", price: "330"),
+  Restaurants1(category: "The Masala Story", title: "Reshmi Kebab", price: "340"),
+  Restaurants1(category: "Domino's Pizza", title: "Margherita Pizza", price: "300"),
+  Restaurants1(category: "Domino's Pizza", title: "Pepperoni Pizza", price: "400"),
+  Restaurants1(category: "Domino's Pizza", title: "Farmhouse Pizza", price: "350"),
+  Restaurants1(category: "Domino's Pizza", title: "Veg Extravaganza Pizza", price: "380"),
+  Restaurants1(category: "Domino's Pizza", title: "BBQ Chicken Pizza", price: "420"),
+  Restaurants1(category: "Domino's Pizza", title: "Mexican Green Wave Pizza", price: "360"),
+  Restaurants1(category: "McDonald's", title: "Big Mac", price: "350"),
+  Restaurants1(category: "McDonald's", title: "McChicken", price: "300"),
+  Restaurants1(category: "McDonald's", title: "Filet-O-Fish", price: "320"),
+  Restaurants1(category: "McDonald's", title: "McVeggie", price: "280"),
+  Restaurants1(category: "McDonald's", title: "McAloo Tikki", price: "250"),
+  Restaurants1(category: "McDonald's", title: "Double Cheeseburger", price: "370"),
+  Restaurants1(category: "Gohana Famous Jalebi", title: "Classic Jalebi", price: "200"),
+  Restaurants1(category: "Gohana Famous Jalebi", title: "Rabri Jalebi", price: "250"),
+  Restaurants1(category: "Gohana Famous Jalebi", title: "Desi Ghee Jalebi", price: "300"),
+  Restaurants1(category: "Gohana Famous Jalebi", title: "Kesar Jalebi", price: "280"),
+  Restaurants1(category: "Gohana Famous Jalebi", title: "Mini Jalebi", price: "150"),
+  Restaurants1(category: "Gohana Famous Jalebi", title: "Stuffed Jalebi", price: "350"),
+  Restaurants1(category: "Haldiram's", title: "Raj Kachori", price: "180"),
+  Restaurants1(category: "Haldiram's", title: "Pav Bhaji", price: "220"),
+  Restaurants1(category: "Haldiram's", title: "Chole Bhature", price: "200"),
+  Restaurants1(category: "Haldiram's", title: "Dhokla", price: "150"),
+  Restaurants1(category: "Haldiram's", title: "Aloo Tikki", price: "120"),
+  Restaurants1(category: "Haldiram's", title: "Paneer Tikka Roll", price: "250"),
+
 ];
 
-class Restaurants6 {
-  String name, price;
 
-  Restaurants6({required this.name, required this.price});
-}
 
-List<Restaurants6> restaurantList6= [
-  Restaurants6(name: "Veg Burger", price: "150"),
-  Restaurants6(name: "Chicken Burger", price: "250"),
-  Restaurants6(name: "Paneer Burger", price: "250"),
-  Restaurants6(name: "Veg Burger", price: "350"),
-  Restaurants6(name: "Chicken Burger", price: "250"),
-  Restaurants6(name: "Paneer Burger", price: "250"),
-];
+
+

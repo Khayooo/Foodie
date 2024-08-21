@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/constants.dart';
 
@@ -292,7 +291,15 @@ class  MenuItems extends StatefulWidget{
 }
 
 class _MenuItemsState extends State<MenuItems> {
+  List<Restaurants1> _differnetDishes = [] ;
   bool _onClick= true;
+  @override
+  void initState() {
+var categoryName = restaurantList[widget.index].title;
+
+_differnetDishes= restaurantList1.where((item) => item.category == categoryName).toList();
+
+  }
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -338,7 +345,7 @@ return Column(
       ),
     ),
 
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < _differnetDishes.length; i++)
       Container(
       padding: const EdgeInsets.only(top: 6, left: 25, right: 25),
       height: size.height * 0.06,
@@ -353,7 +360,7 @@ return Column(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(restaurantList1[i].title,
+          Text(_differnetDishes[i].title,
               style: const TextStyle(
                 color: Colors.black,
                 fontSize: 18,
@@ -362,7 +369,7 @@ return Column(
           Row(
             children: [
               Text(
-                restaurantList1[i].price,
+                _differnetDishes[i].price,
                 style: const TextStyle(
                   color: Colors.black,
                   fontSize: 16,
