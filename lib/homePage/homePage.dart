@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/constants.dart';
+import 'package:food_delivery_app/homePage/MapPage.dart';
 import 'package:food_delivery_app/homePage/Profile.dart';
 import 'package:food_delivery_app/homePage/Restaurant.dart';
 
@@ -15,7 +16,7 @@ class _HomePageState extends State<HomePage> {
   List<Widget> _pages = [
     MainHomePage(),
     Restaurant(),
-    MainHomePage(),
+    MapPage(),
     Profile(),
   ];
   int _selectedIndex = 0;
