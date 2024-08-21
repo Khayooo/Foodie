@@ -239,3 +239,56 @@ List<Restaurants> restaurantList = [
         "https://media.self.com/photos/5ebd7a636ed447b59b846244/4:3/w_2560%2Cc_limit/snack-plate.jpg",
   ),
 ];
+
+
+class Restaurants1 {
+  String  title, price;
+
+  Restaurants1(
+      {
+        required this.title,
+
+        required this.price});
+}
+
+List<Restaurants1> restaurantList1 = [
+  Restaurants1(
+    title: "Jalebi",
+    price: "50",),
+  Restaurants1(
+    title: "Rasgulla",
+    price: "100",),
+  Restaurants1(
+    title: "Rasmalai",
+    price: "100",),
+  Restaurants1(
+    title: "Gulab Jamun",
+    price: "70",),
+  Restaurants1(
+    title: "Besan Ladoo",
+    price: "160",),
+  Restaurants1(
+    title: "Kaju Katli",
+    price: "200",),
+  Restaurants1(
+    title: "Rava Ladoo",
+    price: "160",),
+  Restaurants1(
+    title: "Moong Dal Halwa",
+    price: "200",),
+];
+
+class Restaurants6 {
+  String name, price;
+
+  Restaurants6({required this.name, required this.price});
+}
+
+List<Restaurants6> restaurantList6= [
+  Restaurants6(name: "Veg Burger", price: "150"),
+  Restaurants6(name: "Chicken Burger", price: "250"),
+  Restaurants6(name: "Paneer Burger", price: "250"),
+  Restaurants6(name: "Veg Burger", price: "350"),
+  Restaurants6(name: "Chicken Burger", price: "250"),
+  Restaurants6(name: "Paneer Burger", price: "250"),
+];
