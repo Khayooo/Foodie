@@ -292,12 +292,14 @@ class  MenuItems extends StatefulWidget{
 
 class _MenuItemsState extends State<MenuItems> {
   List<Restaurants1> _differnetDishes = [] ;
-  bool _onClick= true;
+  late List<bool> _onClick;
+
   @override
   void initState() {
 var categoryName = restaurantList[widget.index].title;
 
 _differnetDishes= restaurantList1.where((item) => item.category == categoryName).toList();
+_onClick = List.generate(_differnetDishes.length, (index) => false);
 
   }
   @override
@@ -381,10 +383,10 @@ return Column(
               ),
               IconButton(
                 onPressed: (){
-                _onClick = !_onClick;
+    _onClick[i] = !_onClick[i];
                setState(() {
                });         },
-                icon: _onClick
+                icon: _onClick[i]
                     ?
                 Icon(
                   Icons.check_box_outlined,

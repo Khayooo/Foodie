@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/SplashScreen.dart';
 import 'package:food_delivery_app/Welcome/Welcome_screen.dart';
 import 'package:food_delivery_app/constants.dart';
 
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
         )
       ),
 
-      home: const MyWelcomePage(),
+      home: const SplashScreen(),
     );
   }
 }
