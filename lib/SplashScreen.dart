@@ -28,15 +28,15 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
     _controller!.addStatusListener((status) {
 
     });
-    Timer(Duration(milliseconds: 2500), (){
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) =>
-          const MyWelcomePage(), // ensure this page exists
-        ),
-      );
-    });
+    // Timer(Duration(milliseconds: 2500), (){
+    //   Navigator.pushReplacement(
+    //     context,
+    //     MaterialPageRoute(
+    //       builder: (context) =>
+    //       const MyWelcomePage(), // ensure this page exists
+    //     ),
+    //   );
+    // });
 
   }
 
@@ -50,15 +50,33 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Center(
-        child: ScaleTransition(
-          scale: _animation!,
-          child: Text(
-            'Foodie',
-            style: TextStyle(
-              fontSize: 48,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: RadialGradient(
+            radius: 1.5, // Slightly smaller radius for a more concentrated effect
+            stops: [0.0, 0.3, 0.5, 0.7, 0.85, 0.95, 1.0], // Smooth transition stops
+            colors: [
+              const Color.fromARGB(255, 83, 69, 164), // Deep purple
+              const Color.fromARGB(255, 66, 53, 165).withOpacity(.9), // Slightly brighter with less opacity
+              const Color.fromARGB(255, 75, 53, 165).withOpacity(.7), // Adjusted opacity for smoother transition
+              const Color.fromARGB(255, 121, 112, 159).withOpacity(.5), // Softer tone
+              const Color.fromARGB(255, 70, 53, 165).withOpacity(.3), // Lighter with more transparency
+              const Color(0xFF6F35A5).withOpacity(.15), // Soft gradient towards the edges
+              const Color(0xFF6F35A5).withOpacity(.05), // Barely visible, creating a smooth fade-out effect
+            ],
+          ),
+        ),
+
+        child: Center(
+          child: ScaleTransition(
+            scale: _animation!,
+            child: Text(
+              'Foodie',
+              style: TextStyle(
+                fontSize: 54,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
           ),
         ),
