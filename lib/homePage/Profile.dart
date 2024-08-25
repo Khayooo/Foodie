@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/login/login_screen.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 class Profile extends StatelessWidget {
@@ -156,6 +158,21 @@ class Profile extends StatelessWidget {
                   text: 'Log Out',
                   icon: LineAwesomeIcons.sign_out_alt_solid,
                   press: () {
+                    final auth = FirebaseAuth.instance;
+                    auth.signOut().then((value){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return const LoginScreen();
+                          },
+                        ),
+                      );
+                    }).onError((error , stackTrace){
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text(error.toString())),
+                      );
+                    });
                   },
                   endIcon: false,
                   color: Colors.red,
