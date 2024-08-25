@@ -5,7 +5,6 @@ import 'package:food_delivery_app/constants.dart';
 import 'package:food_delivery_app/homePage/homePage.dart';
 import 'package:food_delivery_app/login/login_screen.dart';
 
-
 class SignUpForm extends StatefulWidget {
   const SignUpForm({
     Key? key,
@@ -16,59 +15,97 @@ class SignUpForm extends StatefulWidget {
 }
 
 class _SignUpFormState extends State<SignUpForm> {
-
   bool loading = false;
   bool _obscureText = true;
-  late final TextEditingController _passwordController =
-  TextEditingController();
-  late final TextEditingController _emailController = TextEditingController();
+  late TextEditingController _passwordController;
+  late TextEditingController _emailController;
   final _formKey = GlobalKey<FormState>();
 
-  FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
+  @override
+  void initState() {
+    super.initState();
+    _passwordController = TextEditingController();
+    _emailController = TextEditingController();
+  }
 
-  void Signup(){
+  @override
+  void dispose() {
+    _passwordController.dispose();
+    _emailController.dispose();
+    super.dispose();
+  }
+
+  void Signup() async {
     if (_formKey.currentState!.validate()) {
       setState(() {
         loading = true;
       });
-      // _auth
-      //     .createUserWithEmailAndPassword(
-      //     email: _emailController.text.toString(),
-      //     password: _passwordController.text.toString())
-      //     .then((value) {
-      //   setState(() {
-      //     loading = false;
-      //     ScaffoldMessenger.of(context).showSnackBar(
-      //       const SnackBar(content: Text('Signup successful')),
-      //     );
-      //     Navigator.pushReplacement(
-      //       context,
-      //       MaterialPageRoute(
-      //         builder: (context) {
-      //           return const HomePage();
-      //         },
-      //       ),
-      //     );
-      //   });
-      // }).onError((error, stackTrace) {
-      //   setState(() {
-      //     loading = false;
-      //   });
-      //   ScaffoldMessenger.of(context).showSnackBar(
-      //     SnackBar(content: Text(error.toString())),
-      //   );
-      // });
-      _emailController.clear();
-      _passwordController.clear();
+
+      try {
+        // Await the sign-up process
+        await _auth.createUserWithEmailAndPassword(
+          email: _emailController.text.trim(),
+          password: _passwordController.text.trim(),
+        );
+
+        setState(() {
+          loading = false;
+        });
+
+        // Show success message and navigate to the HomePage screen
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Signup successful')),
+        );
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return const HomePage();
+            },
+          ),
+        );
+
+        // Clear the text fields after successful signup
+        _emailController.clear();
+        _passwordController.clear();
+      } on FirebaseAuthException catch (e) {
+        setState(() {
+          loading = false;
+        });
+
+        // Handle FirebaseAuth exceptions
+        String errorMessage;
+        switch (e.code) {
+          case 'email-already-in-use':
+            errorMessage = 'The email address is already in use by another account.';
+            break;
+          case 'invalid-email':
+            errorMessage = 'The email address is not valid.';
+            break;
+          case 'operation-not-allowed':
+            errorMessage = 'Email/password accounts are not enabled.';
+            break;
+          case 'weak-password':
+            errorMessage = 'The password provided is too weak.';
+            break;
+          default:
+            errorMessage = 'An error occurred. Please try again.';
+        }
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(errorMessage)),
+        );
+      } catch (e) {
+        setState(() {
+          loading = false;
+        });
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Error: ${e.toString()}')),
+        );
+      }
     }
-  }
-
-
-  @override
-  void dispose() {
-
-    super.dispose();
   }
 
   @override
@@ -78,6 +115,7 @@ class _SignUpFormState extends State<SignUpForm> {
       child: Column(
         children: [
           TextFormField(
+            controller: _emailController,
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'Please enter your email';
@@ -104,6 +142,7 @@ class _SignUpFormState extends State<SignUpForm> {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: kDefaultPadding),
             child: TextFormField(
+              controller: _passwordController,
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Please enter your password';
@@ -114,7 +153,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 return null;
               },
               textInputAction: TextInputAction.done,
-              obscureText: true,
+              obscureText: _obscureText,
               cursorColor: kPrimaryColor,
               decoration: InputDecoration(
                 hintText: "Your password",
@@ -126,13 +165,16 @@ class _SignUpFormState extends State<SignUpForm> {
             ),
           ),
           const SizedBox(height: kDefaultPadding / 2),
-         Hero(
+          Hero(
             tag: "signup_btn",
             child: ElevatedButton(
               onPressed: () {
-Signup();
+                Signup();
               },
-              child: Text("Sign Up".toUpperCase()),
+              child: Text(
+                "Sign Up".toUpperCase(),
+                style: const TextStyle(color: Colors.white),
+              ),
             ),
           ),
           const SizedBox(height: kDefaultPadding),
