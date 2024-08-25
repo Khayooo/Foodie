@@ -16,7 +16,6 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
-  bool _obscureText = true;
   late final TextEditingController _passwordController = TextEditingController();
   late final TextEditingController _emailController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
@@ -62,84 +61,85 @@ class _LoginFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
     return Form(
-      // key: _formkey,
-      child: Form(
-        key: _formKey,
-        child: Column(
-          children: [
-            TextFormField(
-              // controller: _emailController,
-              keyboardType: TextInputType.emailAddress,
-              textInputAction: TextInputAction.next,
-              cursorColor: kPrimaryColor,
-              onSaved: (email) {},
+      key: _formKey,
+      child: Column(
+        children: [
+          TextFormField(
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter your email';
+              }
+              String pattern =
+                  r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$';
+              RegExp regex = RegExp(pattern);
+              if (!regex.hasMatch(value)) {
+                return 'Enter a valid email address';
+              }
+              return null;
+            },
+            controller: _emailController,
+            keyboardType: TextInputType.emailAddress,
+            textInputAction: TextInputAction.next,
+            cursorColor: kPrimaryColor,
+            onSaved: (email) {},
+            decoration: const InputDecoration(
+              hintText: "Your email",
+              prefixIcon: Padding(
+                padding: EdgeInsets.all(kDefaultPadding),
+                child: Icon(Icons.person),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: kDefaultPadding),
+            child: TextFormField(
               validator: (value) {
-                if(value!.isEmpty){
-                  return "Please enter your email";
+                if (value == null || value.isEmpty) {
+                  return 'Please enter your password';
+                }
+                if (value.length < 6) {
+                  return 'Password must be at least 6 characters long';
                 }
                 return null;
               },
+              controller: _passwordController,
+              textInputAction: TextInputAction.done,
+              obscureText: true,
+              cursorColor: kPrimaryColor,
               decoration: const InputDecoration(
-                hintText: "Your email",
+                hintText: "Your password",
                 prefixIcon: Padding(
                   padding: EdgeInsets.all(kDefaultPadding),
-                  child: Icon(Icons.person),
+                  child: Icon(Icons.lock),
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: kDefaultPadding),
-              child: TextFormField(
-                // controller: _passwordController,
-                textInputAction: TextInputAction.done,
-                obscureText: true,
-                cursorColor: kPrimaryColor,
-                validator: (value) {
-                  if(value!.isEmpty){
-                    return "Please enter your password";
-                  }
-                  return null;
-                },
-                decoration: const InputDecoration(
-                  hintText: "Your password",
-                  prefixIcon: Padding(
-                    padding: EdgeInsets.all(kDefaultPadding),
-                    child: Icon(Icons.lock),
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: kDefaultPadding),
-            // _isLoading
-            //     ? const CircularProgressIndicator()
-            //     :
-                Hero(
-              tag: "login_btn",
-              child: ElevatedButton(
-        
-                onPressed: () {
-                  login();
-
-                },
-                child: Text("Login".toUpperCase(), style: TextStyle( color: Colors.white),),
-              ),
-            ),
-        
-            const SizedBox(height: kDefaultPadding),
-            AlreadyHaveAnAccountCheck(
-              press: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return const SignUpScreen();
-                    },
-                  ),
-                );
+          ),
+          const SizedBox(height: kDefaultPadding),
+              Hero(
+            tag: "login_btn",
+            child: ElevatedButton(
+              onPressed: () {
+                login();
               },
+              child: Text("Login".toUpperCase(), style: TextStyle( color: Colors.white),),
             ),
-          ],
-        ),
+          ),
+
+          const SizedBox(height: kDefaultPadding),
+          AlreadyHaveAnAccountCheck(
+            press: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const SignUpScreen();
+                  },
+                ),
+              );
+            },
+          ),
+        ],
       ),
     );
   }
