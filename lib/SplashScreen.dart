@@ -1,8 +1,8 @@
 import 'dart:async';
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/animation.dart';
-import 'package:food_delivery_app/Welcome/Welcome_screen.dart';
+import 'package:food_delivery_app/homePage/homePage.dart';
+import 'package:food_delivery_app/login/login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -13,7 +13,32 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin {
   AnimationController? _controller;
   Animation<double>? _animation;
+  isLogin(){
+    final auth = FirebaseAuth.instance;
+    final user = auth.currentUser;
 
+    if(user != null){
+      Timer(Duration(milliseconds: 2500), (){
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) =>
+            const HomePage(), // ensure this page exists
+          ),
+        );
+      });
+    }else{
+      Timer(Duration(milliseconds: 2500), (){
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) =>
+            const LoginScreen(), // ensure this page exists
+          ),
+        );
+      });
+    }
+  }
   @override
   void initState() {
     super.initState();
@@ -24,21 +49,13 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
 
     _animation = CurvedAnimation(parent: _controller!, curve: Curves.easeInOut);
 
-    // Navigate to home screen after the animation
     _controller!.addStatusListener((status) {
 
     });
-    Timer(Duration(milliseconds: 2500), (){
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) =>
-          const MyWelcomePage(), // ensure this page exists
-        ),
-      );
-    });
-  }
 
+    isLogin();
+  }
+// Slightly smaller radius for a more concentrated effect
   @override
   void dispose() {
     _controller!.dispose();

@@ -5,7 +5,6 @@ import '../../../constants.dart';
 import '../../components/already-have_an_account_acheck.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-
 class LoginForm extends StatefulWidget {
   const LoginForm({
     super.key,
@@ -16,21 +15,20 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
-  late final TextEditingController _passwordController = TextEditingController();
+  late final TextEditingController _passwordController =
+      TextEditingController();
   late final TextEditingController _emailController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   bool loading = false;
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-
-  void login() {
+  void login() async{
     if (_formKey.currentState!.validate()) {
       setState(() {
         loading = true;
       });
-      try{
-        _auth
-            .signInWithEmailAndPassword(
+      try {
+      await  _auth.signInWithEmailAndPassword(
             email: _emailController.text.trim(),
             password: _passwordController.text.trim());
         setState(() {
@@ -47,7 +45,7 @@ class _LoginFormState extends State<LoginForm> {
             },
           ),
         );
-      }catch(e){
+      } catch (e) {
         setState(() {
           loading = false;
         });
@@ -116,16 +114,20 @@ class _LoginFormState extends State<LoginForm> {
             ),
           ),
           const SizedBox(height: kDefaultPadding),
-              Hero(
+          Hero(
             tag: "login_btn",
             child: ElevatedButton(
               onPressed: () {
                 login();
               },
-              child:loading? CircularProgressIndicator(): Text("Login".toUpperCase(), style: TextStyle( color: Colors.white),),
+              child: loading
+                  ? CircularProgressIndicator()
+                  : Text(
+                      "Login".toUpperCase(),
+                      style: TextStyle(color: Colors.white),
+                    ),
             ),
           ),
-
           const SizedBox(height: kDefaultPadding),
           AlreadyHaveAnAccountCheck(
             press: () {
@@ -144,5 +146,3 @@ class _LoginFormState extends State<LoginForm> {
     );
   }
 }
-
-

@@ -7,6 +7,14 @@ import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 class Profile extends StatelessWidget {
   const Profile({super.key});
 
+GetUserEmail(){
+  final auth = FirebaseAuth.instance;
+  final user = auth.currentUser;
+  if(user!= null){
+   return user.email;
+  }
+  return null;
+}
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -76,19 +84,17 @@ class Profile extends StatelessWidget {
                 ),
                 Text(
                   'Shahwaiz Mughal',
-                  style:
-                  Theme.of(context)
+                  style: Theme.of(context)
                       .textTheme
                       .headlineSmall
                       ?.copyWith(color: Colors.grey.shade800, fontSize: 24),
-
                 ),
                 const SizedBox(
                   height: 5,
                 ),
                 Text(
-                  'shahwaizmughal940@gmail.com',
-                  style: TextStyle(color: Colors.grey.shade800,fontSize: 13),
+                  GetUserEmail(),
+                  style: TextStyle(color: Colors.grey.shade800, fontSize: 13),
                 ),
                 const SizedBox(
                   height: 25,
@@ -159,7 +165,7 @@ class Profile extends StatelessWidget {
                   icon: LineAwesomeIcons.sign_out_alt_solid,
                   press: () {
                     final auth = FirebaseAuth.instance;
-                    auth.signOut().then((value){
+                    auth.signOut().then((value) {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -168,7 +174,7 @@ class Profile extends StatelessWidget {
                           },
                         ),
                       );
-                    }).onError((error , stackTrace){
+                    }).onError((error, stackTrace) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(content: Text(error.toString())),
                       );
