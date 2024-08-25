@@ -7,8 +7,8 @@ import 'package:food_delivery_app/login/login_screen.dart';
 
 class SignUpForm extends StatefulWidget {
   const SignUpForm({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<SignUpForm> createState() => _SignUpFormState();
@@ -105,8 +105,7 @@ class _SignUpFormState extends State<SignUpForm> {
           SnackBar(content: Text('Error: ${e.toString()}')),
         );
       }
-    }  final bool _obscureText = true;
-
+    }
   }
 
   @override
