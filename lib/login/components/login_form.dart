@@ -8,8 +8,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<LoginForm> createState() => _LoginFormState();
@@ -20,7 +20,7 @@ class _LoginFormState extends State<LoginForm> {
   late final TextEditingController _emailController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   bool loading = false;
-  FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
 
   void login() {
@@ -28,11 +28,11 @@ class _LoginFormState extends State<LoginForm> {
       setState(() {
         loading = true;
       });
-      _auth
-          .signInWithEmailAndPassword(
-          email: _emailController.text.trim(),
-          password: _passwordController.text.trim())
-          .then((value) {
+      try{
+        _auth
+            .signInWithEmailAndPassword(
+            email: _emailController.text.trim(),
+            password: _passwordController.text.trim());
         setState(() {
           loading = false;
         });
@@ -47,14 +47,14 @@ class _LoginFormState extends State<LoginForm> {
             },
           ),
         );
-      }).onError((error, stackTrace) {
+      }catch(e){
         setState(() {
           loading = false;
         });
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(error.toString())),
+          SnackBar(content: Text(e.toString())),
         );
-      });
+      }
     }
   }
 
@@ -122,7 +122,7 @@ class _LoginFormState extends State<LoginForm> {
               onPressed: () {
                 login();
               },
-              child: Text("Login".toUpperCase(), style: TextStyle( color: Colors.white),),
+              child:loading? CircularProgressIndicator(): Text("Login".toUpperCase(), style: TextStyle( color: Colors.white),),
             ),
           ),
 
