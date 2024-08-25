@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "631556728870",
+    "project_id": "foodie-43fab",
+    "storage_bucket": "foodie-43fab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:631556728870:android:e95f60931c7dc5e7869ee7",
+        "android_client_info": {
+          "package_name": "com.example.food_delivery_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASF0wvjN-TrHPyiGENxBurSuodnm5Whcw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -28,16 +28,15 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
     _controller!.addStatusListener((status) {
 
     });
-    // Timer(Duration(milliseconds: 2500), (){
-    //   Navigator.pushReplacement(
-    //     context,
-    //     MaterialPageRoute(
-    //       builder: (context) =>
-    //       const MyWelcomePage(), // ensure this page exists
-    //     ),
-    //   );
-    // });
-
+    Timer(Duration(milliseconds: 2500), (){
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) =>
+          const MyWelcomePage(), // ensure this page exists
+        ),
+      );
+    });
   }
 
   @override
