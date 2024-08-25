@@ -45,12 +45,12 @@ class _LoginFormState extends State<LoginForm> {
             },
           ),
         );
-      } catch (e) {
+      } on FirebaseException catch (e) {
         setState(() {
           loading = false;
         });
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(e.toString())),
+          SnackBar(content: Text(e.code)),
         );
       }
     }
@@ -121,7 +121,7 @@ class _LoginFormState extends State<LoginForm> {
                 login();
               },
               child: loading
-                  ? CircularProgressIndicator()
+                  ? const CircularProgressIndicator()
                   : Text(
                       "Login".toUpperCase(),
                       style: TextStyle(color: Colors.white),
