@@ -1,10 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/constants.dart';
 
-
 class OrDivider extends StatelessWidget {
-  const OrDivider({Key? key}) : super(key: key);
+  const OrDivider({super.key});
 
   @override
   Widget build(BuildContext context) {

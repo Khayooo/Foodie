@@ -25,7 +25,7 @@ class RestaurantDetails extends StatelessWidget {
               ),
             ],
           ),
-          child: Row(
+          child: const Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
@@ -41,7 +41,6 @@ class RestaurantDetails extends StatelessWidget {
         ),
       ),
       body: MainScreen(index: index),
-      
     );
   }
 }
@@ -165,64 +164,63 @@ class _TopImageState extends State<TopImage> {
   }
 }
 
-class Rating extends StatelessWidget{
+class Rating extends StatelessWidget {
   final int index;
   const Rating({super.key, required this.index});
   @override
   Widget build(BuildContext context) {
     var he = MediaQuery.of(context).size;
-   return Container(
-     padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
-     height: he.height * .1,
-     width: he.width,
-     child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-       Column(
-         mainAxisAlignment: MainAxisAlignment.center,
-         children: [
-           Text(
-             restaurantList[index].rating,
-             style: const TextStyle(
-               color: Colors.black,
-               fontSize: 20,
-               fontWeight: FontWeight.w500,
-             ),
-           ),
-           const Text(
-             "Rating",
-             style: TextStyle(
-               color: Colors.black,
-               fontSize: 15,
-               fontWeight: FontWeight.w500,
-             ),
-           ),
-         ],
-       ),
-       Column(
-         mainAxisAlignment: MainAxisAlignment.start,
-         children: [
-           const SizedBox(height: 15),
-           Text(
-             "${restaurantList[index].price} for one",
-             style: const TextStyle(
-               color: Colors.blueGrey,
-               fontSize: 16,
-               fontWeight: FontWeight.w500,
-             ),
-           ),
-           const Text(
-             "Delivery Time: 30 min",
-             style: TextStyle(
-               color: Colors.black,
-               fontSize: 15,
-               fontWeight: FontWeight.w500,
-             ),
-           ),
-         ],
-       ),
-     ]),
-   );
+    return Container(
+      padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
+      height: he.height * .1,
+      width: he.width,
+      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              restaurantList[index].rating,
+              style: const TextStyle(
+                color: Colors.black,
+                fontSize: 20,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            const Text(
+              "Rating",
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 15,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ],
+        ),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            const SizedBox(height: 15),
+            Text(
+              "${restaurantList[index].price} for one",
+              style: const TextStyle(
+                color: Colors.blueGrey,
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            const Text(
+              "Delivery Time: 30 min",
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 15,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ],
+        ),
+      ]),
+    );
   }
-
 }
 
 class FOodDescription extends StatefulWidget {
@@ -282,7 +280,7 @@ class _FOodDescriptionState extends State<FOodDescription>
   }
 }
 
-class  MenuItems extends StatefulWidget{
+class MenuItems extends StatefulWidget {
   final int index;
 
   const MenuItems({super.key, required this.index});
@@ -291,117 +289,117 @@ class  MenuItems extends StatefulWidget{
 }
 
 class _MenuItemsState extends State<MenuItems> {
-  List<Restaurants1> _differnetDishes = [] ;
+  List<Restaurants1> _differnetDishes = [];
   late List<bool> _onClick;
 
   @override
   void initState() {
-var categoryName = restaurantList[widget.index].title;
+    var categoryName = restaurantList[widget.index].title;
 
-_differnetDishes= restaurantList1.where((item) => item.category == categoryName).toList();
-_onClick = List.generate(_differnetDishes.length, (index) => false);
-
+    _differnetDishes =
+        restaurantList1.where((item) => item.category == categoryName).toList();
+    _onClick = List.generate(_differnetDishes.length, (index) => false);
   }
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-return Column(
-  children: [
-    Container(
-      padding: const EdgeInsets.only(top: 6, left: 25, right: 25),
-      height: size.height * 0.06,
-      width: size.width,
-      decoration: const BoxDecoration(
-        color: Colors.transparent,
-        borderRadius: BorderRadius.all(
-          Radius.circular(50),
-        ),
-      ),
-      child: const Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            "Menu",
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 20,
-              fontWeight: FontWeight.w500,
+    return Column(
+      children: [
+        Container(
+          padding: const EdgeInsets.only(top: 6, left: 25, right: 25),
+          height: size.height * 0.06,
+          width: size.width,
+          decoration: const BoxDecoration(
+            color: Colors.transparent,
+            borderRadius: BorderRadius.all(
+              Radius.circular(50),
             ),
           ),
-          Spacer(),
-          Text(
-            "View all",
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 15,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          Icon(
-            Icons.arrow_forward_ios,
-            size: 15,
-            color: Colors.black,
-          ),
-        ],
-      ),
-    ),
-
-    for (int i = 0; i < _differnetDishes.length; i++)
-      Container(
-      padding: const EdgeInsets.only(top: 6, left: 25, right: 25),
-      height: size.height * 0.06,
-      width: size.width,
-      margin: const EdgeInsets.only(bottom: 10),
-      decoration: BoxDecoration(
-        color: Colors.transparent.withOpacity(0.01),
-        borderRadius: const BorderRadius.all(
-          Radius.circular(50),
-        ),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(_differnetDishes[i].title,
-              style: const TextStyle(
-                color: Colors.black,
-                fontSize: 18,
-                fontWeight: FontWeight.w500,
-              )),
-          Row(
+          child: const Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                _differnetDishes[i].price,
-                style: const TextStyle(
+                "Menu",
+                style: TextStyle(
                   color: Colors.black,
-                  fontSize: 16,
+                  fontSize: 20,
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              const SizedBox(
-                width: 10,
-              ),
-              IconButton(
-                onPressed: (){
-    _onClick[i] = !_onClick[i];
-               setState(() {
-               });         },
-                icon: _onClick[i]
-                    ?
-                Icon(
-                  Icons.check_box_outlined,
-                  color: Colors.green,
-                ) :  Icon(
-                  Icons.check_box_outline_blank,
+              Spacer(),
+              Text(
+                "View all",
+                style: TextStyle(
                   color: Colors.black,
-                ), )
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              Icon(
+                Icons.arrow_forward_ios,
+                size: 15,
+                color: Colors.black,
+              ),
             ],
           ),
-
-        ],
-      ),
-    )
-  ],
-);
+        ),
+        for (int i = 0; i < _differnetDishes.length; i++)
+          Container(
+            padding: const EdgeInsets.only(top: 6, left: 25, right: 25),
+            height: size.height * 0.06,
+            width: size.width,
+            margin: const EdgeInsets.only(bottom: 10),
+            decoration: BoxDecoration(
+              color: Colors.transparent.withOpacity(0.01),
+              borderRadius: const BorderRadius.all(
+                Radius.circular(50),
+              ),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(_differnetDishes[i].title,
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                    )),
+                Row(
+                  children: [
+                    Text(
+                      _differnetDishes[i].price,
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        _onClick[i] = !_onClick[i];
+                        setState(() {});
+                      },
+                      icon: _onClick[i]
+                          ? const Icon(
+                              Icons.check_box_outlined,
+                              color: Colors.green,
+                            )
+                          : const Icon(
+                              Icons.check_box_outline_blank,
+                              color: Colors.black,
+                            ),
+                    )
+                  ],
+                ),
+              ],
+            ),
+          )
+      ],
+    );
   }
 }

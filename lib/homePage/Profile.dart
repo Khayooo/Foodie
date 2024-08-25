@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/login/login_screen.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
@@ -40,7 +39,7 @@ GetUserEmail(){
           backgroundColor: Colors.transparent,
           leading: IconButton(
             onPressed: () {},
-            icon: Icon(
+            icon: const Icon(
               Icons.menu,
               color: Colors.white,
             ),
@@ -57,7 +56,7 @@ GetUserEmail(){
           actions: [
             IconButton(
                 onPressed: () {},
-                icon: Icon(
+                icon: const Icon(
                   LineAwesomeIcons.moon,
                   color: Colors.white,
                 ))
@@ -93,7 +92,7 @@ GetUserEmail(){
                   height: 5,
                 ),
                 Text(
-                  GetUserEmail() != null ? GetUserEmail():"example@gmail.com",
+                  GetUserEmail() ?? "example@gmail.com",
                   style: TextStyle(color: Colors.grey.shade800, fontSize: 13),
                 ),
                 const SizedBox(
@@ -194,13 +193,12 @@ GetUserEmail(){
 
 class ProfileMenuWidget extends StatelessWidget {
   const ProfileMenuWidget(
-      {Key? key,
+      {super.key,
       required this.text,
       required this.icon,
       required this.press,
       this.endIcon = true,
-      this.color})
-      : super(key: key);
+      this.color});
 
   final String text;
   final IconData icon;

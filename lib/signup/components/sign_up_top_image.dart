@@ -5,8 +5,8 @@ import '../../../constants.dart';
 
 class SignUpScreenTopImage extends StatelessWidget {
   const SignUpScreenTopImage({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class SignUpScreenTopImage extends StatelessWidget {
           "Sign Up".toUpperCase(),
           style:  Theme.of(context).textTheme.headlineLarge, textAlign: TextAlign.center,
         ),
-        SizedBox(height: kDefaultPadding),
+        const SizedBox(height: kDefaultPadding),
         Row(
           children: [
             const Spacer(),
@@ -28,7 +28,7 @@ class SignUpScreenTopImage extends StatelessWidget {
             const Spacer(),
           ],
         ),
-        SizedBox(height: kDefaultPadding),
+        const SizedBox(height: kDefaultPadding),
       ],
     );
   }

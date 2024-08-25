@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/constants.dart';
 import 'package:food_delivery_app/homePage/MapPage.dart';
@@ -13,7 +12,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<Widget> _pages = [
+  final List<Widget> _pages = [
     MainHomePage(),
     Restaurant(),
     MapPage(),
@@ -110,10 +109,14 @@ class MainHomePage extends StatelessWidget {
             const SearchInput(),
             const PromoCard(),
             const HeadLine(),
-            SizedBox( height: he.height * .01,),
+            SizedBox(
+              height: he.height * .01,
+            ),
             const CardListView(),
             const SHeadLine(),
-            SizedBox( height: he.height * .01,),
+            SizedBox(
+              height: he.height * .01,
+            ),
             const MenuListView(),
             Container(
               padding: const EdgeInsets.only(top: 15, right: 25, bottom: 15),
@@ -135,9 +138,7 @@ class MainHomePage extends StatelessWidget {
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2, mainAxisSpacing: 10),
                   itemBuilder: (context, index) {
-                    return Card(
-
-                        foodItemList[index].name,
+                    return Card(foodItemList[index].name,
                         foodItemList[index].imageUrl, "20 min away");
                   }),
             )
@@ -158,7 +159,7 @@ class TopBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          const Text(
             "Find Your\nFavorite Food",
             style: TextStyle(
               fontSize: 25,
@@ -174,7 +175,7 @@ class TopBar extends StatelessWidget {
                   spreadRadius: 0,
                   color: Colors.grey.withOpacity(.25)),
             ]),
-            child: CircleAvatar(
+            child: const CircleAvatar(
               radius: 25,
               backgroundColor: Colors.white,
               child: Icon(
@@ -192,11 +193,11 @@ class TopBar extends StatelessWidget {
 
 class IconBottomBar extends StatelessWidget {
   const IconBottomBar(
-      {Key? key,
+      {super.key,
       required this.text,
       required this.icon,
-      required this.onTap,
-      required this.selected});
+      required this.selected,
+      required this.onTap});
 
   final String text;
   final IconData icon;
@@ -447,7 +448,8 @@ class Card extends StatelessWidget {
   final String imageUrl;
   final String subtitle;
 
-  Card(this.text, this.imageUrl, this.subtitle, {Key? key}) : super(key: key);
+  const Card(this.text, this.imageUrl, this.subtitle, {Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -472,7 +474,7 @@ class Card extends StatelessWidget {
           children: [
             Image.network(imageUrl, height: 55, fit: BoxFit.cover, frameBuilder:
                 (BuildContext context, Widget child, int? frame,
-                bool? wasSynchronouslyLoaded) {
+                    bool? wasSynchronouslyLoaded) {
               if (wasSynchronouslyLoaded!) {
                 return child;
               }
@@ -524,7 +526,7 @@ class MenuListView extends StatelessWidget {
         height: 175,
         child: ListView(
           scrollDirection: Axis.horizontal,
-          children: [
+          children: const [
             Card(
                 "Biryani",
                 "https://icon2.cleanpng.com/20180330/axe/kisspng-hyderabadi-biryani-indian-cuisine-dish-chicken-mea-biryani-5abedc42d00da9.6620510115224576668522.jpg",

@@ -9,7 +9,7 @@ class MyWelcomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Background(
+    return const Background(
         child: SingleChildScrollView(
       child: SafeArea(
           child: MyResponsivePage(
@@ -20,12 +20,15 @@ class MyWelcomePage extends StatelessWidget {
                   Expanded(
                     child: WelcomeImage(),
                   ),
-                  Expanded(child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(width: 450,
-                        child: LoginAndSignupBtn(),)
-                      ],
+                  Expanded(
+                      child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        width: 450,
+                        child: LoginAndSignupBtn(),
+                      )
+                    ],
                   ))
                 ],
               ))),
@@ -33,26 +36,25 @@ class MyWelcomePage extends StatelessWidget {
   }
 }
 
-
 class MobileWelcomeScreen extends StatelessWidget {
   const MobileWelcomeScreen({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         WelcomeImage(),
         Row(
           children: [
-            const Spacer(),
+            Spacer(),
             Expanded(
               flex: 8,
               child: LoginAndSignupBtn(),
             ),
-            const Spacer(),
+            Spacer(),
           ],
         ),
       ],

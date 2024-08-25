@@ -8,8 +8,8 @@ import 'package:food_delivery_app/signup/components/social_icon.dart';
 
 class SocalSignUp extends StatelessWidget {
   const SocalSignUp({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

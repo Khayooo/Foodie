@@ -15,20 +15,23 @@ class LoginScreenTopImage extends StatelessWidget {
           style: Theme.of(context).textTheme.headlineLarge,
           textAlign: TextAlign.center,
         ),
-        SizedBox(height: kDefaultPadding,),
-
+        const SizedBox(
+          height: kDefaultPadding,
+        ),
         Row(
           children: [
-            Spacer(),
-            Container(
+            const Spacer(),
+            SizedBox(
               width: 300,
               height: 300,
               child: SvgPicture.asset('assets/icons/delivery.svg'),
             ),
-            Spacer()
+            const Spacer()
           ],
         ),
-        SizedBox(height: kDefaultPadding *2,)
+        const SizedBox(
+          height: kDefaultPadding * 2,
+        )
       ],
     );
   }

@@ -13,41 +13,39 @@ class SignUpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Background(
+    return const Background(
       child: SingleChildScrollView(
-        child: MyResponsivePage(
-
-          mobile: MobileSignupScreen(),
-          desktop: Row(
-            children: [
-              Expanded(
-                child: SignUpScreenTopImage(),
+          child: MyResponsivePage(
+        mobile: MobileSignupScreen(),
+        desktop: Row(
+          children: [
+            Expanded(
+              child: SignUpScreenTopImage(),
+            ),
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    width: 450,
+                    child: SignUpForm(),
+                  ),
+                  SizedBox(height: kDefaultPadding / 2),
+                  // SocalSignUp()
+                ],
               ),
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      width: 450,
-                      child: SignUpForm(),
-                    ),
-                    SizedBox(height: kDefaultPadding / 2),
-                    // SocalSignUp()
-                  ],
-                ),
-              )
-            ],
-          ),
-      )
-      ),
+            )
+          ],
+        ),
+      )),
     );
   }
 }
 
 class MobileSignupScreen extends StatelessWidget {
   const MobileSignupScreen({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

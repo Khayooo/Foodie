@@ -16,7 +16,6 @@ class SignUpForm extends StatefulWidget {
 
 class _SignUpFormState extends State<SignUpForm> {
   bool loading = false;
-  bool _obscureText = true;
   late TextEditingController _passwordController;
   late TextEditingController _emailController;
   final _formKey = GlobalKey<FormState>();
@@ -79,7 +78,8 @@ class _SignUpFormState extends State<SignUpForm> {
         String errorMessage;
         switch (e.code) {
           case 'email-already-in-use':
-            errorMessage = 'The email address is already in use by another account.';
+            errorMessage =
+                'The email address is already in use by another account.';
             break;
           case 'invalid-email':
             errorMessage = 'The email address is not valid.';
@@ -105,7 +105,8 @@ class _SignUpFormState extends State<SignUpForm> {
           SnackBar(content: Text('Error: ${e.toString()}')),
         );
       }
-    }
+    }  final bool _obscureText = true;
+
   }
 
   @override
@@ -131,10 +132,10 @@ class _SignUpFormState extends State<SignUpForm> {
             keyboardType: TextInputType.emailAddress,
             textInputAction: TextInputAction.next,
             cursorColor: kPrimaryColor,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               hintText: "Your email",
               prefixIcon: Padding(
-                padding: const EdgeInsets.all(kDefaultPadding),
+                padding: EdgeInsets.all(kDefaultPadding),
                 child: Icon(Icons.person),
               ),
             ),
@@ -153,12 +154,12 @@ class _SignUpFormState extends State<SignUpForm> {
                 return null;
               },
               textInputAction: TextInputAction.done,
-              obscureText: _obscureText,
+              obscureText: true,
               cursorColor: kPrimaryColor,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: "Your password",
                 prefixIcon: Padding(
-                  padding: const EdgeInsets.all(kDefaultPadding),
+                  padding: EdgeInsets.all(kDefaultPadding),
                   child: Icon(Icons.lock),
                 ),
               ),
@@ -171,10 +172,12 @@ class _SignUpFormState extends State<SignUpForm> {
               onPressed: () {
                 Signup();
               },
-              child: Text(
-                "Sign Up".toUpperCase(),
-                style: const TextStyle(color: Colors.white),
-              ),
+              child: loading
+                  ? CircularProgressIndicator()
+                  : Text(
+                      "Sign Up".toUpperCase(),
+                      style: const TextStyle(color: Colors.white),
+                    ),
             ),
           ),
           const SizedBox(height: kDefaultPadding),

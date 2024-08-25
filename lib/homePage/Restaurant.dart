@@ -1,9 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/constants.dart';
 import 'package:food_delivery_app/homePage/RestaurantDetails.dart';
 
 class Restaurant extends StatelessWidget {
+  const Restaurant({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,7 +58,7 @@ Widget restaurantAvailable(BuildContext context) {
             ],
           ),
         ),
-        Expanded(  
+        Expanded(
           child: ListView.builder(
             itemCount: restaurantList.length,
             itemBuilder: (context, index) {
@@ -75,14 +75,14 @@ Widget itemBuilder(Size size, BuildContext context, int index) {
   return Padding(
     padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 18),
     child: GestureDetector(
-        onTap: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => RestaurantDetails(
-                    index: index,
-                  )));
-        },
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => RestaurantDetails(
+                      index: index,
+                    )));
+      },
       child: Material(
         elevation: 3,
         borderRadius: BorderRadius.circular(18),
@@ -104,39 +104,39 @@ Widget itemBuilder(Size size, BuildContext context, int index) {
                       fit: BoxFit.cover),
                 ),
               ),
-          Container(
-            height: size.height / 12,
-            width: size.width / 1.2,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  restaurantList[index].title,
-                  style: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                Container(
-                  height: size.height / 25,
-                  width: size.width / 7,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.green,
-                  ),
-                  alignment: Alignment.center,
-                  child: Text(
-                    restaurantList[index].rating,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
+              Container(
+                height: size.height / 12,
+                width: size.width / 1.2,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      restaurantList[index].title,
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
-                  ),
+                    Container(
+                      height: size.height / 25,
+                      width: size.width / 7,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.green,
+                      ),
+                      alignment: Alignment.center,
+                      child: Text(
+                        restaurantList[index].rating,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          ),
+              ),
               Container(
                 width: size.width / 1.2,
                 child: Row(
@@ -164,7 +164,7 @@ Widget itemBuilder(Size size, BuildContext context, int index) {
                   ],
                 ),
               )
-          ],
+            ],
           ),
         ),
       ),

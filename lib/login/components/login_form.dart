@@ -22,13 +22,13 @@ class _LoginFormState extends State<LoginForm> {
   bool loading = false;
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  void login() async{
+  void login() async {
     if (_formKey.currentState!.validate()) {
       setState(() {
         loading = true;
       });
       try {
-      await  _auth.signInWithEmailAndPassword(
+        await _auth.signInWithEmailAndPassword(
             email: _emailController.text.trim(),
             password: _passwordController.text.trim());
         setState(() {
@@ -124,7 +124,7 @@ class _LoginFormState extends State<LoginForm> {
                   ? const CircularProgressIndicator()
                   : Text(
                       "Login".toUpperCase(),
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                     ),
             ),
           ),
