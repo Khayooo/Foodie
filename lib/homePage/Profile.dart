@@ -13,7 +13,7 @@ GetUserEmail(){
   if(user!= null){
    return user.email;
   }
-  return null;
+  return;
 }
   @override
   Widget build(BuildContext context) {
@@ -93,7 +93,7 @@ GetUserEmail(){
                   height: 5,
                 ),
                 Text(
-                  GetUserEmail(),
+                  GetUserEmail() != null ? GetUserEmail():"example@gmail.com",
                   style: TextStyle(color: Colors.grey.shade800, fontSize: 13),
                 ),
                 const SizedBox(
