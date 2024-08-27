@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/homePage/homePage.dart';
+import 'package:food_delivery_app/login/ForgetPasswordScreen.dart';
 import 'package:food_delivery_app/signup/sign_up_screen.dart';
 import '../../../constants.dart';
 import '../../components/already-have_an_account_acheck.dart';
@@ -35,7 +36,7 @@ class _LoginFormState extends State<LoginForm> {
           loading = false;
         });
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Login Successfully")),
+          const SnackBar(content: Text("Login Successfully")),
         );
         Navigator.pushReplacement(
           context,
@@ -127,6 +128,23 @@ class _LoginFormState extends State<LoginForm> {
                       style: const TextStyle(color: Colors.white),
                     ),
             ),
+          ),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const ForgotPasswordScreen();
+                      },
+                    ),
+                  );
+                },
+                child: const Text(
+                  "forget password?",
+                )),
           ),
           const SizedBox(height: kDefaultPadding),
           AlreadyHaveAnAccountCheck(
