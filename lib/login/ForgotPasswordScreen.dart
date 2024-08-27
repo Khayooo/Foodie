@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/login/login_screen.dart';
 
 import '../constants.dart';
 
@@ -128,6 +129,14 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                       setState(() {
                         _isLoading = false;
                       });
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return const LoginScreen();
+                          },
+                        ),
+                      );
                     }
                   }
                 },
