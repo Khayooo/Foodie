@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/homePage/homePage.dart';
-import 'package:food_delivery_app/login/ForgetPasswordScreen.dart';
+import 'package:food_delivery_app/login/ForgotPasswordScreen.dart';
 import 'package:food_delivery_app/signup/sign_up_screen.dart';
 import '../../../constants.dart';
 import '../../components/already-have_an_account_acheck.dart';
