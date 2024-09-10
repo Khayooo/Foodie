@@ -9,35 +9,38 @@ import 'components/sign_up_top_image.dart';
 import 'components/social_sign_up.dart';
 
 class SignUpScreen extends StatelessWidget {
-  const SignUpScreen({Key? key}) : super(key: key);
+  const SignUpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Background(
-      child: SingleChildScrollView(
-          child: MyResponsivePage(
-        mobile: MobileSignupScreen(),
-        desktop: Row(
-          children: [
-            Expanded(
-              child: SignUpScreenTopImage(),
-            ),
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    width: 450,
-                    child: SignUpForm(),
-                  ),
-                  SizedBox(height: kDefaultPadding / 2),
-                  // SocalSignUp()
-                ],
+    return const Scaffold(
+      resizeToAvoidBottomInset: true,
+      body: Background(
+        child: SingleChildScrollView(
+            child: MyResponsivePage(
+          mobile: MobileSignupScreen(),
+          desktop: Row(
+            children: [
+              Expanded(
+                child: SignUpScreenTopImage(),
               ),
-            )
-          ],
-        ),
-      )),
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      width: 450,
+                      child: SignUpForm(),
+                    ),
+                    SizedBox(height: kDefaultPadding / 2),
+                    // SocalSignUp()
+                  ],
+                ),
+              )
+            ],
+          ),
+        )),
+      ),
     );
   }
 }
