@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
             maximumSize: const Size(double.infinity, 56),
           ),
         ),
-        inputDecorationTheme: InputDecorationTheme(
+        inputDecorationTheme: const InputDecorationTheme(
           filled: true,
           fillColor: kPrimaryLightColor,
           prefixIconColor: kPrimaryColor,
